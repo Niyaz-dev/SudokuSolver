@@ -18,7 +18,7 @@ body {
 }
 
 .sudoku__cell {
-    font-size: 30px;
+    font-size: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
