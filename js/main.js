@@ -40,12 +40,17 @@ fillSudoku();
 
 
 //находим вероятности
-for (let i = 0; i < puzzle.length; i++) {
-    for (let j = 0; j < puzzle[i].length; j++) {
-        if (puzzle[i][j] === 0) {
-            puzzle[i][j] = findPoss(puzzle, i, j)
+function iterateAll() {
+    let iter = 0;
+    for (let i = 0; i < puzzle.length; i++) {
+        for (let j = 0; j < puzzle[i].length; j++) {
+            if (puzzle[i][j] === 0 || puzzle[i][j].length) {
+                iter ++;
+                puzzle[i][j] = findPoss(puzzle, i, j)
+            }
         }
     }
+    if(iter === 0) return true;
 }
 
 function findHorizontalPos(puzzle, i, j) {
@@ -94,16 +99,28 @@ function findBoxPos(puzzle, i, j) {
     let hMulty = 0;
     let vMulty = 0;
 
-    if(i < 3) {hMulty = 0}
-    if(i>=3 && i<6) {hMulty = 1}
-    if(i>=6) {hMulty = 2}
+    if (i < 3) {
+        hMulty = 0
+    }
+    if (i >= 3 && i < 6) {
+        hMulty = 1
+    }
+    if (i >= 6) {
+        hMulty = 2
+    }
 
-    if(j < 3) {vMulty = 0}
-    if(j>=3 && j<6) {vMulty = 1}
-    if(j>=6) {vMulty = 2}
+    if (j < 3) {
+        vMulty = 0
+    }
+    if (j >= 3 && j < 6) {
+        vMulty = 1
+    }
+    if (j >= 6) {
+        vMulty = 2
+    }
 
-    for(let x = hMulty*3; x <(hMulty+1)*3; x++) {
-        for(let y = vMulty*3; y <(vMulty+1)*3; y++) {
+    for (let x = hMulty * 3; x < (hMulty + 1) * 3; x++) {
+        for (let y = vMulty * 3; y < (vMulty + 1) * 3; y++) {
             if (Number.isInteger(puzzle[x][y])) contains.push(puzzle[x][y])
         }
     }
@@ -127,11 +144,15 @@ function findPoss(puzzle, i, j) {
     let possibles = [];
 
     hPos.forEach(item => {
-        if(vPos.includes(item) && bPos.includes(item)) possibles.push(item);
+        if (vPos.includes(item) && bPos.includes(item)) possibles.push(item);
     })
 
+    console.log(possibles)
+    if (possibles.length === 1) return possibles[0]
     return possibles;
 }
+
+while(!iterateAll())
 
 fillSudoku();
 
