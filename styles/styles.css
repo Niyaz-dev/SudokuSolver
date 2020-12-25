@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sudoku {
+    display: flex;
+    flex-direction: column;
+
+    border: 3px solid black;
+
+    width: 600px;
+    height: 600px;
+}
+
+.sudoku__cell {
+    font-size: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    flex-basis: 10%;
+    flex-grow: 1;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.sudoku__cell:last-child {
+    border-right: 0;
+}
+
+.sudoku__row:last-child .sudoku__cell{
+    border-bottom: 0;
+}
+
+.sudoku__row:nth-child(3n) .sudoku__cell{
+    border-bottom: 3px solid black;
+}
+
+.sudoku__row:last-child .sudoku__cell{
+    border-bottom: 0;
+}
+
+.sudoku__cell:nth-child(3n) {
+    border-right: 3px solid black;
+}
+
+.sudoku__cell:last-child {
+    border-right: 0;
+}
+
+.sudoku__row {
+    display: flex;
+    flex-grow: 1;
+}
+
