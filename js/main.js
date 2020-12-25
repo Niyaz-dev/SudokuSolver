@@ -28,10 +28,19 @@ document.body.append(sudokuBox);
 
 
 function fillSudoku() {
+    let period = 50;
+    const step = period;
     let cells = document.querySelector('.sudoku');
     for (let i = 0; i < puzzle.length; i++) {
         for (let j = 0; j < puzzle[i].length; j++) {
-            cells.querySelector(`#id${i + 1}${j + 1}`).textContent = (puzzle[i][j] || '').toString();
+            let digit = ((Number.isInteger(puzzle[i][j]) && puzzle[i][j]) || '').toString();
+
+            cells.querySelector(`#id${i + 1}${j + 1}`).textContent = digit;
+
+            // setTimeout(() => {
+            //     cells.querySelector(`#id${i + 1}${j + 1}`).textContent = digit;
+            // }, period)
+            // period+=step;
         }
     }
 }
@@ -45,12 +54,12 @@ function iterateAll() {
     for (let i = 0; i < puzzle.length; i++) {
         for (let j = 0; j < puzzle[i].length; j++) {
             if (puzzle[i][j] === 0 || puzzle[i][j].length) {
-                iter ++;
+                iter++;
                 puzzle[i][j] = findPoss(puzzle, i, j)
             }
         }
     }
-    if(iter === 0) return true;
+    if (iter === 0) return true;
 }
 
 function findHorizontalPos(puzzle, i, j) {
@@ -147,12 +156,13 @@ function findPoss(puzzle, i, j) {
         if (vPos.includes(item) && bPos.includes(item)) possibles.push(item);
     })
 
-    console.log(possibles)
     if (possibles.length === 1) return possibles[0]
     return possibles;
 }
 
-while(!iterateAll())
+while (!iterateAll()) {
+}
 
-fillSudoku();
+// fillSudoku();
+
 
